@@ -16,6 +16,7 @@ from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.metrics import classification_report, accuracy_score, f1_score
 from training.normalise import normalise_text
+from training.schema import compose_text
 
 def train_baseline():
     train_path = os.path.join("datasets", "processed", "train.csv")
@@ -27,10 +28,10 @@ def train_baseline():
     train_df = pd.read_csv(train_path)
     val_df = pd.read_csv(val_path)
 
-    X_train = [normalise_text(t) for t in train_df["text"]]
+    X_train = [normalise_text(t) for t in compose_text(train_df)]
     y_train = train_df["label"].values
 
-    X_val = [normalise_text(t) for t in val_df["text"]]
+    X_val = [normalise_text(t) for t in compose_text(val_df)]
     y_val = val_df["label"].values
 
     # Word TF-IDF

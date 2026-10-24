@@ -15,19 +15,24 @@ import sys
 # Ensure project root is in path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
 
+import hashlib
 import json
 import joblib
 import numpy as np
 import pandas as pd
+import sklearn
+from datetime import datetime, timezone
 from sklearn.pipeline import FeatureUnion
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import classification_report, accuracy_score, precision_recall_fscore_support
 from training.normalise import normalise_text
+from training.schema import compose_text
 
 def train_core():
     train_path = os.path.join("datasets", "processed", "train.csv")
     val_path = os.path.join("datasets", "processed", "val.csv")
+    test_path = os.path.join("datasets", "processed", "test.csv")
     models_dir = "models"
     os.makedirs(models_dir, exist_ok=True)
 
@@ -35,10 +40,10 @@ def train_core():
     train_df = pd.read_csv(train_path)
     val_df = pd.read_csv(val_path)
 
-    X_train = [normalise_text(t) for t in train_df["text"]]
+    X_train = [normalise_text(t) for t in compose_text(train_df)]
     y_train = train_df["label"].values
 
-    X_val = [normalise_text(t) for t in val_df["text"]]
+    X_val = [normalise_text(t) for t in compose_text(val_df)]
     y_val = val_df["label"].values
 
     # Word & Char n-gram union for robust adversarial resistance & subword cues
@@ -99,13 +104,22 @@ def train_core():
     joblib.dump(clf, model_path)
     joblib.dump(union_vectorizer, vec_path)
 
+    with open(test_path, "rb") as handle:
+        dataset_sha256 = hashlib.sha256(handle.read()).hexdigest()
+
     metadata = {
         "model_type": "LogisticRegression",
         "vectorizer": "FeatureUnion(word_ngram=(1,2), char_ngram=(3,5))",
         "decision_threshold": best_thresh,
         "classes": [0, 1],
         "validation_accuracy": float(acc),
-        "validation_f1": float(best_f1)
+        "validation_f1": float(best_f1),
+        "sklearn_version": sklearn.__version__,
+        "dataset_sha256": dataset_sha256,
+        "trained_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+        "train_rows": int(len(train_df)),
+        "val_rows": int(len(val_df)),
+        "sources": {str(k): int(v) for k, v in train_df["source"].value_counts().items()},
     }
     with open(meta_path, "w", encoding="utf-8") as f:
         json.dump(metadata, f, indent=2)

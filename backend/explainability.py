@@ -5,9 +5,11 @@ Maps score to a 4-level verdict: Low, Suspicious, High, Uncertain / Review Manua
 Extracts top positive feature weights from the Logistic Regression model for plain-language evidence.
 """
 
+import json
 import os
 import joblib
 import numpy as np
+import sklearn
 from training.normalise import normalise_text
 
 # Load core model and vectorizer
@@ -23,6 +25,18 @@ def get_model_and_vec():
         if not (os.path.exists(model_path) and os.path.exists(vec_path)):
             model_path = os.path.join("models", "core_model.pkl")
             vec_path = os.path.join("models", "tfidf_vectorizer.pkl")
+
+        meta_path = os.path.join(os.path.dirname(model_path), "metadata.json")
+        if os.path.exists(meta_path):
+            with open(meta_path, "r", encoding="utf-8") as handle:
+                trained_version = json.load(handle).get("sklearn_version")
+            if trained_version and trained_version != sklearn.__version__:
+                raise RuntimeError(
+                    "PhishGuard models were trained with scikit-learn "
+                    f"{trained_version}, but {sklearn.__version__} is installed. "
+                    "Re-run: python -m training.train_baseline && python -m training.train"
+                )
+
         if os.path.exists(model_path) and os.path.exists(vec_path):
             _MODEL = joblib.load(model_path)
             _VEC = joblib.load(vec_path)

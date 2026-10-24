@@ -1,11 +1,21 @@
 {
   "model_type": "LogisticRegression",
   "vectorizer": "FeatureUnion(word_ngram=(1,2), char_ngram=(3,5))",
-  "decision_threshold": 0.35,
+  "decision_threshold": 0.49999999999999994,
   "classes": [
     0,
     1
   ],
-  "validation_accuracy": 1.0,
-  "validation_f1": 1.0
+  "validation_accuracy": 0.9753086419753086,
+  "validation_f1": 0.9787234042553191,
+  "sklearn_version": "1.6.1",
+  "dataset_sha256": "79d3d92c3dfe10ef872c8a2fd7c2ef1e14060522a7d9441bdc77729c3f5c00f3",
+  "trained_at": "2026-10-24T21:54:20+00:00",
+  "train_rows": 886,
+  "val_rows": 162,
+  "sources": {
+    "spamassassin": 362,
+    "nazario": 352,
+    "constructed_vit": 172
+  }
 }

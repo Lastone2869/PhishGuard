@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PhishGuard — Student Phishing Awareness & Analysis</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header>
+      <div class="brand-row">
+        <div class="logo-area">
+          <div class="shield-icon" aria-hidden="true">&#128737;</div>
+          <div>
+            <h1>PhishGuard</h1>
+            <p class="tagline">AI-driven phishing awareness and transparent signal analysis for students</p>
+          </div>
+        </div>
+        <div>
+          <span class="badge-core">STAGE 1 &bull; CORE</span>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Message Input Card -->
+    <main>
+      <section class="card" aria-labelledby="input-heading">
+        <h2 id="input-heading" class="section-title">Message Inspector</h2>
+
+        <!-- Sample Selector Pills -->
+        <div class="sample-bar">
+          <span class="sample-label">Try a scenario sample:</span>
+          <div class="sample-pills">
+            <button type="button" class="pill-btn" onclick="loadSample('vit_phish')">🚨 VIT Account Suspension Scam</button>
+            <button type="button" class="pill-btn" onclick="loadSample('vit_legit')">🏛️ Official VIT Timetable Circular</button>
+            <button type="button" class="pill-btn" onclick="loadSample('gpay_phish')">💳 GPay Account Limited</button>
+            <button type="button" class="pill-btn" onclick="loadSample('peer_chat')">💬 Student Project Chat</button>
+          </div>
+        </div>
+
+        <form id="analyse-form" onsubmit="handleAnalyse(event)">
+          <div class="form-group">
+            <label for="msg-text">Message Content (Email, SMS, or Chat text) *</label>
+            <textarea id="msg-text" required placeholder="Paste the suspicious message content here..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label for="msg-sender">Sender Address or Identifier (Optional)</label>
+            <input type="text" id="msg-sender" placeholder="e.g. admin@vit-support-desk.com or coe@vit.ac.in">
+          </div>
+
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
+            <button type="submit" id="btn-submit" class="btn-primary">
+              <span>Analyse Message</span>
+              <span aria-hidden="true">&rarr;</span>
+            </button>
+            <span style="font-size: 0.8rem; color: var(--text-muted);">Safe Analysis: URLs are never resolved or visited.</span>
+          </div>
+        </form>
+      </section>
+
+      <!-- Analysis Results Card (Hidden until submitted) -->
+      <section id="results-card" class="card hidden" aria-live="polite">
+        <div class="verdict-header">
+          <div>
+            <span style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Assessment Verdict</span>
+            <div id="verdict-badge" class="verdict-badge badge-red">High Risk</div>
+          </div>
+          <div class="score-box">
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">RISK INDEX</div>
+              <div id="score-num" class="score-num">0.95</div>
+            </div>
+            <div class="meter-track">
+              <div id="meter-fill" class="meter-fill"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Verdict Recommendation Banner -->
+        <div id="verdict-recommendation" class="verdict-recommendation"></div>
+
+        <!-- Corroborated Signal Badges -->
+        <h3 class="section-title" style="font-size: 1rem;">Signal Breakdown</h3>
+        <div class="signals-grid">
+          <div id="sig-urgency" class="signal-card">
+            <div class="signal-header">URGENCY PRESSURE</div>
+            <div id="sig-urgency-status" class="signal-status">None</div>
+          </div>
+          <div id="sig-cred" class="signal-card">
+            <div class="signal-header">CREDENTIAL SOLICITATION</div>
+            <div id="sig-cred-status" class="signal-status">None</div>
+          </div>
+          <div id="sig-url" class="signal-card">
+            <div class="signal-header">URL STRUCTURE</div>
+            <div id="sig-url-status" class="signal-status">No Links</div>
+          </div>
+          <div id="sig-sender" class="signal-card">
+            <div class="signal-header">SENDER VERIFICATION</div>
+            <div id="sig-sender-status" class="signal-status">Not Provided</div>
+          </div>
+        </div>
+
+        <!-- Defanged Link Architecture -->
+        <div id="defanged-container" class="defanged-box hidden">
+          <div class="defanged-title">Defanged Extracted Links (Safe View &bull; Non-clickable)</div>
+          <div id="defanged-list"></div>
+        </div>
+
+        <!-- Ranked Explanations -->
+        <h3 class="section-title" style="font-size: 1rem;">Evidence & Explanation Panel</h3>
+        <div id="explanation-list" class="explanation-list"></div>
+
+        <!-- What to do now & Reporting Guidance -->
+        <div class="guidance-grid">
+          <div class="advice-card">
+            <h4>⚠️ Recommended Student Actions</h4>
+            <ul id="action-list">
+              <li>Do NOT click any links or download attachments.</li>
+              <li>Do NOT reply or provide student credentials.</li>
+              <li>If you entered your password, change it on official VTOP immediately.</li>
+            </ul>
+          </div>
+
+          <div class="advice-card">
+            <h4>🛡️ Reporting & Official Help</h4>
+            <div class="contact-item">
+              <strong>VIT IT Helpdesk:</strong>
+              <span id="contact-helpdesk">helpdesk@vit.ac.in / Student Welfare</span>
+            </div>
+            <div class="contact-item">
+              <strong>National Cyber Crime Portal:</strong>
+              <span id="contact-portal">cybercrime.gov.in</span>
+            </div>
+            <div class="contact-item">
+              <strong>National Cyber Helpline:</strong>
+              <span>Dial 1930 (Immediate assistance in India)</span>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      PhishGuard v1.0 (Stage 1 Core) &bull; Safe static analysis compliant with Q5 project brief &bull; Zero external link requests
+    </footer>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

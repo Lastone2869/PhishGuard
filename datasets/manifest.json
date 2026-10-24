@@ -1,0 +1,44 @@
+{
+  "total_rows": 1290,
+  "class_balance": {
+    "legit": 670,
+    "phishing": 620
+  },
+  "test_class_balance": {
+    "legit": 153,
+    "phishing": 89
+  },
+  "per_source": {
+    "constructed_vit": {
+      "train": 172,
+      "val": 34,
+      "test": 34,
+      "total": 240
+    },
+    "nazario": {
+      "train": 352,
+      "val": 75,
+      "test": 73,
+      "total": 500
+    },
+    "spamassassin": {
+      "train": 362,
+      "val": 53,
+      "test": 135,
+      "total": 550
+    }
+  },
+  "licenses": {
+    "constructed_vit": "project-owned",
+    "nazario": "CC-BY-4.0",
+    "spamassassin": "public-research"
+  },
+  "url_shortcut_accuracy": 0.5434108527131783,
+  "hard_negative_rate": 0.36716417910447763,
+  "max_cross_split_similarity": 0.829003859430531,
+  "n_clusters": 937,
+  "synthetic_rows": 240,
+  "seed": 42,
+  "test_sha256": "79d3d92c3dfe10ef872c8a2fd7c2ef1e14060522a7d9441bdc77729c3f5c00f3",
+  "generated_at": "2026-10-24T21:54:00+00:00"
+}

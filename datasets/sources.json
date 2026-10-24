@@ -1,0 +1,59 @@
+{
+  "version": 1,
+  "sources": [
+    {
+      "name": "nazario-2022",
+      "url": "https://monkey.org/~jose/phishing/phishing-2022",
+      "license": "CC-BY-4.0",
+      "attribution": "Nazario Phishing Corpus, Jose Nazario (monkey.org/~jose/phishing)",
+      "sha256": "a6291e2cb990204766fce425423949b403cce4ae6a660fc8d08812e40a063fa7",
+      "dest": "nazario/phishing-2022",
+      "kind": "mbox"
+    },
+    {
+      "name": "nazario-2023",
+      "url": "https://monkey.org/~jose/phishing/phishing-2023",
+      "license": "CC-BY-4.0",
+      "attribution": "Nazario Phishing Corpus, Jose Nazario (monkey.org/~jose/phishing)",
+      "sha256": "5007f1c1dc91b15e93e988afa3a1cf402e15c88f765d3057be8bfec50dae1fe8",
+      "dest": "nazario/phishing-2023",
+      "kind": "mbox"
+    },
+    {
+      "name": "nazario-2024",
+      "url": "https://monkey.org/~jose/phishing/phishing-2024",
+      "license": "CC-BY-4.0",
+      "attribution": "Nazario Phishing Corpus, Jose Nazario (monkey.org/~jose/phishing)",
+      "sha256": "60afa40a2757170093a2bde31ec9cda4e54d33992203ce04bfbbc86d2e5e5b99",
+      "dest": "nazario/phishing-2024",
+      "kind": "mbox"
+    },
+    {
+      "name": "spamassassin-easy-ham",
+      "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_easy_ham.tar.bz2",
+      "license": "public-research",
+      "attribution": "SpamAssassin public mail corpus; copyright remains with the original senders",
+      "sha256": "2b7b65904bcfcc31d2b5f51946f2d261370b257402cbbd62930b46ab83367438",
+      "dest": "spamassassin/20030228_easy_ham.tar.bz2",
+      "kind": "tar.bz2"
+    },
+    {
+      "name": "spamassassin-easy-ham-2",
+      "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_easy_ham_2.tar.bz2",
+      "license": "public-research",
+      "attribution": "SpamAssassin public mail corpus; copyright remains with the original senders",
+      "sha256": "b4bd3dc5ae5b40f38e99a0e41ad7d16b428b56e818e3a6ffa07330d62004dd38",
+      "dest": "spamassassin/20030228_easy_ham_2.tar.bz2",
+      "kind": "tar.bz2"
+    },
+    {
+      "name": "spamassassin-hard-ham",
+      "url": "https://spamassassin.apache.org/old/publiccorpus/20030228_hard_ham.tar.bz2",
+      "license": "public-research",
+      "attribution": "SpamAssassin public mail corpus; copyright remains with the original senders",
+      "sha256": "ce2ce67880643dbde65ea7f85bffbfe4417349c4bd80b6b0de56262ae6b0a9c9",
+      "dest": "spamassassin/20030228_hard_ham.tar.bz2",
+      "kind": "tar.bz2"
+    }
+  ]
+}

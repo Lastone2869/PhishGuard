@@ -1,20 +1,20 @@
 """
 prepare_data.py
-Constructs, cleans, and partitions labelled dataset for PhishGuard Stage 1.
-Includes genuine institutional notices, VIT account-suspension scenarios,
-general email/SMS phishing, and legitimate student communications.
+Legacy fixture generator. The 126 hand-written rows from the first prototype are
+retained as UI samples and smoke-test fixtures only.
+
+They are NOT the training dataset. The pilot dataset is built by
+`python -m training.build_dataset` from Nazario, SpamAssassin, and the
+constructed VIT corpus.
+
+Running this script writes only `datasets/fixtures/demo_messages.csv`; it never
+touches `datasets/processed/`.
 """
 
 import os
-import random
 import pandas as pd
-from sklearn.model_selection import train_test_split
 
-DATASET_RAW_PATH = os.path.join("datasets", "raw", "raw_messages.csv")
-PROCESSED_DIR = os.path.join("datasets", "processed")
-TRAIN_PATH = os.path.join(PROCESSED_DIR, "train.csv")
-VAL_PATH = os.path.join(PROCESSED_DIR, "val.csv")
-TEST_PATH = os.path.join(PROCESSED_DIR, "test.csv")
+FIXTURES_PATH = os.path.join("datasets", "fixtures", "demo_messages.csv")
 
 def generate_samples():
     data = []
@@ -181,36 +181,19 @@ def generate_samples():
     return expanded
 
 def main():
-    print("Preparing PhishGuard dataset...")
-    os.makedirs(os.path.dirname(DATASET_RAW_PATH), exist_ok=True)
-    os.makedirs(PROCESSED_DIR, exist_ok=True)
+    print("Generating legacy demo fixtures...")
+    os.makedirs(os.path.dirname(FIXTURES_PATH), exist_ok=True)
 
-    samples = generate_samples()
-    df = pd.DataFrame(samples)
-
-    # Clean and deduplicate
+    df = pd.DataFrame(generate_samples())
     df["text"] = df["text"].astype(str).str.strip()
     df = df.drop_duplicates(subset=["text"]).reset_index(drop=True)
 
-    print(f"Total unique records: {len(df)}")
+    print(f"Unique fixture rows: {len(df)}")
     print(f"Class balance:\n{df['label'].value_counts()}")
-
-    # Save raw
-    df.to_csv(DATASET_RAW_PATH, index=False)
-    print(f"Saved raw dataset to {DATASET_RAW_PATH}")
-
-    # Stratified train (70%), val (15%), test (15%)
-    train_df, temp_df = train_test_split(df, test_size=0.30, random_state=42, stratify=df["label"])
-    val_df, test_df = train_test_split(temp_df, test_size=0.50, random_state=42, stratify=temp_df["label"])
-
-    train_df.to_csv(TRAIN_PATH, index=False)
-    val_df.to_csv(VAL_PATH, index=False)
-    test_df.to_csv(TEST_PATH, index=False)
-
-    print(f"Splits created:")
-    print(f"  Train: {len(train_df)} rows")
-    print(f"  Validation: {len(val_df)} rows")
-    print(f"  Test: {len(test_df)} rows (FROZEN held-out)")
+    df.to_csv(FIXTURES_PATH, index=False)
+    print(f"Saved demo fixtures to {FIXTURES_PATH}")
+    print("Fixtures are for UI samples only. Build the real dataset with:")
+    print("  python -m training.build_dataset")
 
 if __name__ == "__main__":
     main()

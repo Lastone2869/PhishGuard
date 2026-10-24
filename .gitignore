@@ -20,3 +20,6 @@ Thumbs.db
 
 # Duplicate download artifacts
 * (1).md
+
+# External raw datasets (downloaded, not redistributed)
+datasets/raw/external/

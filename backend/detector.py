@@ -33,14 +33,29 @@ URGENCY_PATTERNS = [
     r"\b(?:expires? today|immediate action|urgent notice)\b"
 ]
 
+CREDENTIAL_VERBS = (
+    r"(?:enter|provide|send|share|submit|confirm|verify|re-?enter|type|give|"
+    r"reply\s+with|respond\s+with|upload)"
+)
+CREDENTIAL_NOUNS = (
+    r"(?:passwords?|passcode|pin|otp|one[- ]time password|verification code|"
+    r"login details|login credentials|student credentials|credentials|"
+    r"bank account(?: number)?|ifsc|aadhaar|pan|upi id|credit card|cvv|ssn)"
+)
+
+# Detect disclosure requests, not mere mentions. "password expires" and
+# "never share your password" must not count as credential solicitation.
 CREDENTIAL_PATTERNS = [
-    r"\b(?:passwords?|passcode|pin)\b",
-    r"\b(?:otp|one[- ]time password|verification code)\b",
-    r"\b(?:login details|login credentials|student credentials)\b",
+    rf"\b{CREDENTIAL_VERBS}\b[^.\n]{{0,60}}?\b{CREDENTIAL_NOUNS}\b",
     r"\b(?:verify (?:your )?account|confirm (?:your )?identity|re-verify)\b",
-    r"\b(?:banking credentials|credit card|cvv|ssn)\b",
-    r"\b(?:enter (?:your )?credentials|update (?:your )?login)\b"
+    r"\bupdate (?:your )?(?:login details|login credentials|credentials)\b",
 ]
+
+NEGATION_RE = re.compile(
+    r"\b(?:never|do not|don't|does not|will not|won't|cannot|can't|"
+    r"no need to|not required to)\b[^.\n]{0,40}$",
+    re.IGNORECASE,
+)
 
 def detect_signals(text: str, sender: str = None) -> dict:
     """
@@ -100,7 +115,10 @@ def detect_signals(text: str, sender: str = None) -> dict:
     cred_matches = []
     for pat in CREDENTIAL_PATTERNS:
         for m in re.finditer(pat, text, flags=re.IGNORECASE):
-            cred_matches.append(m.group(0))
+            prefix = text[max(0, m.start() - 50) : m.start()]
+            if NEGATION_RE.search(prefix):
+                continue
+            cred_matches.append(m.group(0).strip()[:80])
     if cred_matches:
         signals["credential_request"]["present"] = True
         signals["credential_request"]["strength"] = "high" if len(cred_matches) > 1 else "medium"
@@ -111,7 +129,9 @@ def detect_signals(text: str, sender: str = None) -> dict:
     # 3. Suspicious Links Analysis (safe - no web access)
     urls = extract_urls(text)
     if urls:
-        url_analyses = [analyse_url_structure(u) for u in urls]
+        url_analyses = [
+            analyse_url_structure(u, trusted_domains=TRUSTED_DOMAINS) for u in urls
+        ]
         signals["suspicious_links"]["extracted_urls"] = urls
         signals["suspicious_links"]["defanged_urls"] = [ua["defanged"] for ua in url_analyses]
         

@@ -36,6 +36,22 @@ def test_analyse_url_suspicious_tld():
     assert res["is_suspicious"] is True
     assert any("top-level domain" in s for s in res["signals"])
 
+def test_trusted_institutional_subdomain_is_not_suspicious():
+    res = analyse_url_structure(
+        "https://vtop.vit.ac.in/fees", trusted_domains={"vit.ac.in"}
+    )
+    assert res["is_suspicious"] is False
+    assert res["trusted"] is True
+
+
+def test_lookalike_of_trusted_domain_is_still_suspicious():
+    res = analyse_url_structure(
+        "https://vtop.vit.ac.in.account-check.live/fees", trusted_domains={"vit.ac.in"}
+    )
+    assert res["is_suspicious"] is True
+    assert res["trusted"] is False
+
+
 def test_zero_network_activity_guarantee(monkeypatch):
     """
     Simulates a strictly disconnected environment by blocking socket creation.

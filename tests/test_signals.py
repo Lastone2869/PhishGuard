@@ -18,6 +18,39 @@ def test_credential_detection():
     assert sigs["credential_request"]["present"] is True
     assert any("password" in m.lower() for m in sigs["credential_request"]["matches"])
 
+def test_password_expiry_is_not_a_credential_request():
+    sigs = detect_signals(
+        "Your VTOP password expires in 7 days. Change it at https://vtop.vit.ac.in."
+    )
+    assert sigs["credential_request"]["present"] is False
+
+
+def test_never_share_password_is_not_a_credential_request():
+    sigs = detect_signals("Never share your password or OTP with anyone.")
+    assert sigs["credential_request"]["present"] is False
+
+
+def test_enter_password_is_a_credential_request():
+    sigs = detect_signals("Enter your password and OTP at http://evil.example")
+    assert sigs["credential_request"]["present"] is True
+    assert any("password" in match.lower() for match in sigs["credential_request"]["matches"])
+
+
+def test_reply_with_bank_details_is_a_credential_request():
+    sigs = detect_signals("Reply with your bank account number and IFSC to receive the refund.")
+    assert sigs["credential_request"]["present"] is True
+
+
+def test_send_otp_is_a_credential_request():
+    sigs = detect_signals("Send your OTP to +91 98765 43210.")
+    assert sigs["credential_request"]["present"] is True
+
+
+def test_confirm_identity_is_a_credential_request():
+    sigs = detect_signals("Confirm your identity to restore access.")
+    assert sigs["credential_request"]["present"] is True
+
+
 def test_sender_mismatch_missing():
     msg = "General update message without sender header."
     sigs = detect_signals(msg, sender=None)

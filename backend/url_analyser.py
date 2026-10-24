@@ -39,13 +39,17 @@ def defang_url(url: str) -> str:
         defanged = defanged.replace(parsed.netloc, netloc_defanged, 1)
     return defanged
 
-def analyse_url_structure(url: str) -> dict:
+def analyse_url_structure(url: str, trusted_domains: set[str] | None = None) -> dict:
     """
     Analyses the lexical and structural properties of a URL safely from text.
     Returns detected risk signals and whether the URL is suspicious.
+
+    Domains in trusted_domains (and their subdomains) skip the heuristics that
+    are normal for institutions, such as vtop.vit.ac.in having four labels.
     """
     signals = []
     suspicious = False
+    trusted_set = {domain.lower().strip(".") for domain in (trusted_domains or set())}
 
     # Normalize url with a scheme for urlparse if missing
     parsed_url = url if "://" in url else "http://" + url
@@ -56,12 +60,16 @@ def analyse_url_structure(url: str) -> dict:
             "url": url,
             "defanged": defang_url(url),
             "is_suspicious": True,
+            "trusted": False,
             "signals": ["Malformed or unparseable URL string"]
         }
 
     # Extract hostname safely (handles ports, userinfo, and IPv6 properly)
     host = (parsed.hostname or "").lower()
     is_ip = bool(IPV4_REGEX.match(host))
+    trusted = bool(host) and any(
+        host == domain or host.endswith("." + domain) for domain in trusted_set
+    )
 
     # 1. IP Address Host Check
     if is_ip:
@@ -83,8 +91,8 @@ def analyse_url_structure(url: str) -> dict:
         signals.append("URL contains '@' character which can conceal the true destination host")
         suspicious = True
 
-    # 4. Excessive Subdomains Check (exclude IP addresses)
-    if not is_ip:
+    # 4. Excessive Subdomains Check (exclude IP addresses and trusted domains)
+    if not is_ip and not trusted:
         subdomain_parts = host.split(".")
         if len(subdomain_parts) >= 4:
             signals.append(f"Unusually deep subdomain hierarchy ({len(subdomain_parts)} levels) in host: '{host}'")
@@ -98,15 +106,17 @@ def analyse_url_structure(url: str) -> dict:
 
     # 6. Lookalike keywords in non-official domains (e.g., 'vit-login', 'vtop-auth')
     phish_cues = ["vit-", "-vit", "vtop", "portal-login", "account-verify", "kyc", "suspended"]
-    for cue in phish_cues:
-        if cue in host and not (host == "vit.ac.in" or host.endswith(".vit.ac.in")):
-            signals.append(f"Host '{host}' mimics institutional credentials with '{cue}' token")
-            suspicious = True
-            break
+    if not trusted:
+        for cue in phish_cues:
+            if cue in host:
+                signals.append(f"Host '{host}' mimics institutional credentials with '{cue}' token")
+                suspicious = True
+                break
 
     return {
         "url": url,
         "defanged": defang_url(url),
         "is_suspicious": suspicious,
+        "trusted": trusted,
         "signals": signals
     }

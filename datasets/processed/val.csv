@@ -1,0 +1,20 @@
+text,label,source,language,sender,is_synthetic
+"Hey, can you send me the link to the Python pandas documentation for group-by operations?",0,general_legit_corpus,en,rahul88@gmail.com,False
+Reminder: Happy Birthday Vikram! Wishing you a fantastic year ahead from all of us.,0,general_legit_corpus,en,ananya.s@gmail.com,True
+Proctor-Ward meeting scheduled for this Thursday at 4 PM in Academic Block 1. Attendance is mandatory for all first-year students.,0,synthetic_vit_legit,en,proctor@vit.ac.in,True
+Reminder: Hey! Don't forget we have the hackathon team check-in tonight on Google Meet.,0,general_legit_corpus,en,priya.k@gmail.com,True
+Campus blood donation drive on Thursday from 9 AM to 4 PM at the Student Center. All donors welcome.,0,general_legit_corpus,en,redcross@univ.edu,False
+Zoom Video: Meeting recording ready for download. Log in with company SSO to watch: http://zoom-recordings-share.net,1,general_phish_corpus,en,invitations@zoom-meeting-desk.com,False
+URGENT: Your VIT Student Account will be suspended within 24 hours due to unverified KYC. Click here immediately to verify: http://vit-account-verify.info/login,1,synthetic_vit_phish,en,admin@vit-support-desk.com,True
+USPS Notice: Your postal shipment is on hold due to incorrect house number. Confirm address: http://usps-redelivery-hub.info,1,general_phish_corpus,en,shipping@usps-post.com,False
+"Reminder: Google Security Alert: New sign-in detected on your Mac in Chennai. If this was you, no action needed.",0,general_legit_corpus,en,no-reply@accounts.google.com,True
+"Notice from Controller of Examinations, VIT: Discrepancy found in your exam registration. Login right now at http://vit-exam-portal.me/verify or you will be debarred.",1,synthetic_vit_phish,en,coe@vit-ac-in.org,True
+"Reminder: Dear Student, The timetable for Winter Semester 2026-27 is now published on VTOP. Please review your slot allotments.",0,synthetic_vit_legit,en,academics@vit.ac.in,True
+Your VIT Student Mail quota is 99% full. Click http://vit-cloud-storage.info/increase to upgrade quota or all incoming mails will be bounced.,1,synthetic_vit_phish,en,sysadmin@vit-mail-portal.com,True
+Reminder: Thank you for submitting your assignment on time. Feedback will be returned by next Monday.,0,general_legit_corpus,en,ta_cs302@univ.edu,True
+FedEx Tracking: Urgent delivery pending custom clearance fee of $2.50. Pay now: http://fedex-custom-duty.com/pay,1,general_phish_corpus,en,tracking@fedex-parcel-notice.com,False
+Reminder: Your Zomato order from Paradise Biryani has been delivered. Enjoy your meal!,0,general_legit_corpus,en,orders@zomato.com,True
+Notice regarding bus transport: Route 14 will have a revised departure timing of 5:15 PM starting from tomorrow.,0,synthetic_vit_legit,en,transport@vit.ac.in,True
+Action Required: VIT Semester fees discrepancy. Failure to verify payment within 12 hours will lead to admission cancellation. Check: http://fees-vit-online.cc,1,synthetic_vit_phish,en,accounts@vit-billing.cc,True
+Reminder: Let's grab lunch at the food court around 1:30 PM today after lab.,0,general_legit_corpus,en,sneha.r@gmail.com,True
+Reminder: Your dentist appointment is confirmed for Saturday at 4:30 PM with Dr. Sharma.,0,general_legit_corpus,en,appointments@sharmaclinic.com,False

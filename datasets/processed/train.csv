@@ -1,0 +1,89 @@
+text,label,source,language,sender,is_synthetic
+Your Zomato order from Paradise Biryani has been delivered. Enjoy your meal!,0,general_legit_corpus,en,orders@zomato.com,False
+HR Payroll: Employee tax W-2 forms ready for review. Access payroll portal: http://hr-payroll-portal-access.com/w2,1,general_phish_corpus,en,payroll@company-hr-update.com,False
+Crypto Wallet Alert: Unauthorized withdrawal requested. Cancel withdrawal without delay at http://metamask-security-vault.io,1,general_phish_corpus,en,support@metamask-alert.com,True
+URGENT: Your VIT Student Account will be suspended as soon as possible due to unverified KYC. Click here without delay to verify: http://vit-account-verify.info/login,1,synthetic_vit_phish,en,admin@vit-support-desk.com,True
+Warning: Your domain registration expires in 24 hours. Renew now to prevent domain cancellation: http://domain-renewal-service.org,1,general_phish_corpus,en,billing@registrar-alert.com,False
+"Reminder: Hey, can you send me the link to the Python pandas documentation for group-by operations?",0,general_legit_corpus,en,rahul88@gmail.com,True
+Reminder: Your mutual fund statement for the quarter ended September 2026 is ready to download.,0,general_legit_corpus,en,statements@amfiindia.com,True
+Your mutual fund statement for the quarter ended September 2026 is ready to download.,0,general_legit_corpus,en,statements@amfiindia.com,False
+"Dear Students, Mid-term CAT-II examination schedule has been announced. Check official circular on the VIT website.",0,synthetic_vit_legit,en,coe@vit.ac.in,True
+Hey! Don't forget we have the hackathon team check-in tonight on Google Meet.,0,general_legit_corpus,en,priya.k@gmail.com,False
+"Reminder: Dear Students, Mid-term CAT-II examination schedule has been announced. Check official circular on the VIT website.",0,synthetic_vit_legit,en,coe@vit.ac.in,True
+Reminder: Notice regarding bus transport: Route 14 will have a revised departure timing of 5:15 PM starting from tomorrow.,0,synthetic_vit_legit,en,transport@vit.ac.in,True
+Attention VITian: Your library and hostel portal access will expire today. Update login details without delay: http://bit.ly/vit-portal-renew,1,synthetic_vit_phish,en,library@vit-update.co,True
+LinkedIn: You have 5 unread messages from recruiters. View profile views and messages: http://linkedin-inmail-viewer.xyz,1,general_phish_corpus,en,notifications@linkedin-mail.com,False
+Reminder: GitHub: A new release v1.4.0 is available for the repository you follow. Check the changelog on GitHub.,0,general_legit_corpus,en,notifications@github.com,True
+Apple iCloud: Storage full. Photos and backups will be purged unless upgraded: http://icloud-storage-portal.com/upgrade,1,general_phish_corpus,en,storage@icloud-billing.com,False
+Reminder: Can you review this pull request when you get a chance? Fixed the navigation bar bug.,0,general_legit_corpus,en,dev.karthik@github.com,True
+Reminder: Your flight booking 6E-204 from Chennai to Delhi is confirmed. Web check-in opens 48 hours prior to departure.,0,general_legit_corpus,en,bookings@goindigo.in,True
+Reminder: Placement and Training Cell: Cognizant campus drive registration details are updated on the PAT portal. Eligibility criteria attached.,0,synthetic_vit_legit,en,placement@vit.ac.in,True
+WhatsApp Verification Code: Never share this code. Enter code at http://whatsapp-web-auth.me to keep your account active.,1,general_phish_corpus,en,no-reply@whatsapp-notify.org,False
+VIT Campus Alert: Account compromise alert. Update your VTOP password immediately via http://vtop.vit-login-auth.com/reset,1,synthetic_vit_phish,en,security@vit-security-team.org,True
+Office of Alumni Affairs: Registrations are open for Alumni Homecoming 2026. Visit official portal for registration.,0,synthetic_vit_legit,en,alumni@vit.ac.in,True
+"Dear Student, The timetable for Winter Semester 2026-27 is now published on VTOP. Please review your slot allotments.",0,synthetic_vit_legit,en,academics@vit.ac.in,True
+Hostel office notification: Room allotment for senior students will commence from June 15th through official student login.,0,synthetic_vit_legit,en,hostel@vit.ac.in,True
+Reminder: Your Amazon order #402-9812481 has been dispatched. Track your delivery directly inside your Amazon app.,0,general_legit_corpus,en,auto-confirm@amazon.in,True
+Reminder: Office of Alumni Affairs: Registrations are open for Alumni Homecoming 2026. Visit official portal for registration.,0,synthetic_vit_legit,en,alumni@vit.ac.in,True
+Happy Birthday Vikram! Wishing you a fantastic year ahead from all of us.,0,general_legit_corpus,en,ananya.s@gmail.com,False
+Facebook Security: Your page is scheduled for deletion due to copyright violation. Appeal here: http://meta-copyright-appeal.cc,1,general_phish_corpus,en,case@meta-support-desk.com,False
+Reminder: Your subscription to Spotify Family will renew automatically on November 1st at Rs 179/month.,0,general_legit_corpus,en,no-reply@spotify.com,True
+Reminder: Thanks for shopping at Decathlon. Your e-invoice is attached to this email.,0,general_legit_corpus,en,care@decathlon.in,True
+Amazon Delivery: Package delayed because address is missing a zip code. Confirm details here: http://track-amazon-package.biz/update,1,general_phish_corpus,en,delivery@amazon-support-hub.com,False
+"VIT Security Alert: Suspicious login from Moscow, Russia. If this wasn't you, confirm identity here immediately: http://vit-alert-safety.com",1,synthetic_vit_phish,en,alerts@vit-auth.com,True
+"Good morning class, class notes and tutorial exercises for chapter 4 have been uploaded on Google Classroom.",0,general_legit_corpus,en,prof.kumar@univ.edu,False
+"Congratulations! You won a $1,000 Walmart Gift Card. Claim within 10 minutes: http://walmart-promo-winner.xyz/claim",1,general_phish_corpus,en,promotions@winner-notice.com,False
+Dean Academics VIT: Your winter registration requires urgent re-confirmation. Verify credentials at http://vtop-registration-check.net,1,synthetic_vit_phish,en,dean@vit-academic-desk.org,True
+Reminder: Your Uber trip on Thursday evening: Total paid was Rs 240 via Google Pay. Download invoice in the app.,0,general_legit_corpus,en,uber.india@uber.com,True
+Your subscription to Spotify Family will renew automatically on November 1st at Rs 179/month.,0,general_legit_corpus,en,no-reply@spotify.com,False
+The package was delivered to your reception desk. Signed by security.,0,general_legit_corpus,en,updates@bluedart.com,False
+Attention VITian: Your library and hostel portal access will expire today. Update login details immediately: http://bit.ly/vit-portal-renew,1,synthetic_vit_phish,en,library@vit-update.co,True
+Library notice: Please return or renew your borrowed books on or before Friday to avoid overdue fines. Open until 10 PM.,0,synthetic_vit_legit,en,library@vit.ac.in,True
+Weekly newsletter from IEEE Computer Society: Top 10 advancements in natural language processing.,0,general_legit_corpus,en,newsletter@computer.org,False
+Netflix alert: Your membership payment failed. Update credit card without delay to avoid cancellation: http://netflix-billing-update.me,1,general_phish_corpus,en,support@netflix-renew.com,True
+Thank you for submitting your assignment on time. Feedback will be returned by next Monday.,0,general_legit_corpus,en,ta_cs302@univ.edu,False
+Crypto Wallet Alert: Unauthorized withdrawal requested. Cancel withdrawal immediately at http://metamask-security-vault.io,1,general_phish_corpus,en,support@metamask-alert.com,False
+"Hey Joel, did you finish the assignment for compiler design? Let's compare outputs.",0,general_legit_corpus,en,arun.v@gmail.com,False
+Netflix alert: Your membership payment failed. Update credit card immediately to avoid cancellation: http://netflix-billing-update.me,1,general_phish_corpus,en,support@netflix-renew.com,False
+Google Workspace: Password expires in 6 hours. Keep your current password by verifying at http://accounts-google-verify.info,1,general_phish_corpus,en,admin@google-security-team.org,False
+Final Warning: Your VTOP access is scheduled for termination. Verify your credentials now at http://vtop-vit-portal.xyz/auth to avoid de-registration.,1,synthetic_vit_phish,en,support@vtop-security.com,True
+Reminder: Library notice: Please return or renew your borrowed books on or before Friday to avoid overdue fines. Open until 10 PM.,0,synthetic_vit_legit,en,library@vit.ac.in,True
+GitHub: A new release v1.4.0 is available for the repository you follow. Check the changelog on GitHub.,0,general_legit_corpus,en,notifications@github.com,False
+Here is the updated draft of our machine learning paper. Let me know your thoughts by Friday.,0,general_legit_corpus,en,sarah.chen@university.edu,False
+VIT Grade Review: Your FAT exam marks have been revised. Check score breakdown by logging into http://vit-results-portal.co,1,synthetic_vit_phish,en,results@vit-examination.org,True
+Reminder: Reminder: Your dentist appointment is confirmed for Saturday at 4:30 PM with Dr. Sharma.,0,general_legit_corpus,en,appointments@sharmaclinic.com,True
+"Reminder: Your monthly electricity bill of Rs 1,420 has been generated. Due date is 25th Oct. Pay via your regular banking app.",0,general_legit_corpus,en,ebilling@tnebnet.org,True
+Thanks for shopping at Decathlon. Your e-invoice is attached to this email.,0,general_legit_corpus,en,care@decathlon.in,False
+URGENT VIT Placement Cell: Exclusive placement interview shortlist attached. Fill your credentials to confirm attendance: http://vit-placements-drive.com/form,1,synthetic_vit_phish,en,pat@vit-placement-support.com,True
+"Your monthly electricity bill of Rs 1,420 has been generated. Due date is 25th Oct. Pay via your regular banking app.",0,general_legit_corpus,en,ebilling@tnebnet.org,False
+Microsoft 365: 7 quarantined incoming emails pending review. Release emails by logging in at http://office365-security-portal.online,1,general_phish_corpus,en,admin@microsoft-notice.com,False
+VIT Campus Alert: Account compromise alert. Update your VTOP password without delay via http://vtop.vit-login-auth.com/reset,1,synthetic_vit_phish,en,security@vit-security-team.org,True
+Student Council Elections: Code of conduct for candidates has been published on the notice board and website.,0,synthetic_vit_legit,en,sw@vit.ac.in,True
+Reminder: Proctor-Ward meeting scheduled for this Thursday at 4 PM in Academic Block 1. Attendance is mandatory for all first-year students.,0,synthetic_vit_legit,en,proctor@vit.ac.in,True
+VIT IT Helpdesk: Unusual activity detected from your IP. Confirm your student password and OTP here http://192.168.1.55/vit_login to secure your account.,1,synthetic_vit_phish,en,helpdesk@vit-support.net,True
+Important: VIT Scholarship disbursement pending. Enter student banking credentials to release fund: http://vit-scholarship-portal.live,1,synthetic_vit_phish,en,scholarship@vit-aid.org,True
+Placement and Training Cell: Cognizant campus drive registration details are updated on the PAT portal. Eligibility criteria attached.,0,synthetic_vit_legit,en,placement@vit.ac.in,True
+Dropbox Team: Confidential document shared with you. Sign in with work credentials to view: http://dropbox-secure-share.link,1,general_phish_corpus,en,share@dropbox-cloud-docs.com,False
+Your flight booking 6E-204 from Chennai to Delhi is confirmed. Web check-in opens 48 hours prior to departure.,0,general_legit_corpus,en,bookings@goindigo.in,False
+Your PayPal account has been limited due to suspicious transactions. Click http://paypal-account-center.com/resolve to confirm your identity.,1,general_phish_corpus,en,service@paypal-security-update.com,False
+Reminder: Your Swiggy order has been accepted by the restaurant and is being prepared.,0,general_legit_corpus,en,support@swiggy.in,True
+Reminder: The package was delivered to your reception desk. Signed by security.,0,general_legit_corpus,en,updates@bluedart.com,True
+Reminder: Notice: Maintenance of server room scheduled for Sunday 2 AM to 5 AM. VTOP and student email will have brief downtime.,0,synthetic_vit_legit,en,sysadmin@vit.ac.in,True
+Sports Board: Inter-collegiate basketball selections will take place at the Outdoor Stadium on Saturday 8:00 AM.,0,synthetic_vit_legit,en,sports@vit.ac.in,True
+Reminder: Sports Board: Inter-collegiate basketball selections will take place at the Outdoor Stadium on Saturday 8:00 AM.,0,synthetic_vit_legit,en,sports@vit.ac.in,True
+Steam Community: Trade offer error detected. Re-authenticate your Steam Guard at http://steamcommunity-trade-check.ru,1,general_phish_corpus,en,support@steampowered-guard.com,False
+Reminder: Fee reminder: The last date to pay tuition fees for next semester without fine is 30th November 2026. Payment via VTOP portal.,0,synthetic_vit_legit,en,finance@vit.ac.in,True
+"Reminder: Hi John, are we still meeting tomorrow at 10 AM to discuss the final year project slides?",0,general_legit_corpus,en,alex.dev@gmail.com,True
+Your Swiggy order has been accepted by the restaurant and is being prepared.,0,general_legit_corpus,en,support@swiggy.in,False
+Your Apple ID has been locked for security reasons. Unlock now by confirming credentials: http://apple-id-verify.co/auth,1,general_phish_corpus,en,security@apple-id-center.com,False
+Your Uber trip on Thursday evening: Total paid was Rs 240 via Google Pay. Download invoice in the app.,0,general_legit_corpus,en,uber.india@uber.com,False
+Wells Fargo Alert: Suspicious login from unknown mobile device. Secure your account now: http://wellsfargo-security-check.com,1,general_phish_corpus,en,alerts@wellsfargo-fraud.com,False
+Reminder: Circular: VIT Riviera 2027 cultural fest registration opens next Monday. Contact the student welfare office for guidelines.,0,synthetic_vit_legit,en,studentwelfare@vit.ac.in,True
+Let's grab lunch at the food court around 1:30 PM today after lab.,0,general_legit_corpus,en,sneha.r@gmail.com,False
+Spotify Premium: Payment processing error. Update payment method: http://spotify-billing-update.info/renew,1,general_phish_corpus,en,help@spotify-support-desk.com,False
+Fee reminder: The last date to pay tuition fees for next semester without fine is 30th November 2026. Payment via VTOP portal.,0,synthetic_vit_legit,en,finance@vit.ac.in,True
+"Google Security Alert: New sign-in detected on your Mac in Chennai. If this was you, no action needed.",0,general_legit_corpus,en,no-reply@accounts.google.com,False
+Reminder: Here is the updated draft of our machine learning paper. Let me know your thoughts by Friday.,0,general_legit_corpus,en,sarah.chen@university.edu,True
+Notice: Maintenance of server room scheduled for Sunday 2 AM to 5 AM. VTOP and student email will have brief downtime.,0,synthetic_vit_legit,en,sysadmin@vit.ac.in,True
+"Hi John, are we still meeting tomorrow at 10 AM to discuss the final year project slides?",0,general_legit_corpus,en,alex.dev@gmail.com,False
+"Guest lecture on AI and Cyber Security by Dr. Ramanathan on Friday, 3 PM at Anna Auditorium. All CSE students invited.",0,synthetic_vit_legit,en,events@vit.ac.in,True

@@ -1,0 +1,20 @@
+text,label,source,language,sender,is_synthetic
+VIT Proctor Office: Serious disciplinary complaint lodged against you. View complaint and defend yourself: http://vit-proctor-inquiry.xyz,1,synthetic_vit_phish,en,proctor@vit-inquiry.com,True
+Reminder: Hostel office notification: Room allotment for senior students will commence from June 15th through official student login.,0,synthetic_vit_legit,en,hostel@vit.ac.in,True
+"IRS Notice: You are eligible for a tax refund of $1,450. Submit your SSN and direct deposit info at http://irs-refund-claim.org",1,general_phish_corpus,en,refund@irs-tax-filing.com,False
+Chase Bank: Suspicious charge of $432.10 at Target. Reply STOP or confirm identity at http://chase-bank-verify.info,1,general_phish_corpus,en,fraud@chase-alert-center.com,False
+Health Centre Circular: Free general health check-up camp will be held at the campus medical center this Wednesday.,0,synthetic_vit_legit,en,healthcentre@vit.ac.in,True
+Your Amazon order #402-9812481 has been dispatched. Track your delivery directly inside your Amazon app.,0,general_legit_corpus,en,auto-confirm@amazon.in,False
+Reminder: Student Council Elections: Code of conduct for candidates has been published on the notice board and website.,0,synthetic_vit_legit,en,sw@vit.ac.in,True
+"Reminder: Good morning class, class notes and tutorial exercises for chapter 4 have been uploaded on Google Classroom.",0,general_legit_corpus,en,prof.kumar@univ.edu,True
+Reminder: Health Centre Circular: Free general health check-up camp will be held at the campus medical center this Wednesday.,0,synthetic_vit_legit,en,healthcentre@vit.ac.in,True
+Circular: VIT Riviera 2027 cultural fest registration opens next Monday. Contact the student welfare office for guidelines.,0,synthetic_vit_legit,en,studentwelfare@vit.ac.in,True
+"Bank of America: We detected a foreign transaction of $850. If unauthorized, verify card details right now at http://bofa-fraud-protection.net",1,general_phish_corpus,en,fraud@bofa-security-alert.com,False
+"VIT Security Alert: Suspicious login from Moscow, Russia. If this wasn't you, confirm identity here without delay: http://vit-alert-safety.com",1,synthetic_vit_phish,en,alerts@vit-auth.com,True
+Reminder: Campus blood donation drive on Thursday from 9 AM to 4 PM at the Student Center. All donors welcome.,0,general_legit_corpus,en,redcross@univ.edu,True
+Can you review this pull request when you get a chance? Fixed the navigation bar bug.,0,general_legit_corpus,en,dev.karthik@github.com,False
+"Reminder: Hey Joel, did you finish the assignment for compiler design? Let's compare outputs.",0,general_legit_corpus,en,arun.v@gmail.com,True
+Reminder: Weekly newsletter from IEEE Computer Society: Top 10 advancements in natural language processing.,0,general_legit_corpus,en,newsletter@computer.org,True
+VIT WiFi Portal: Your network credentials will be suspended. Re-verify student login at http://vit-wifi-auth.com/login,1,synthetic_vit_phish,en,wifi@vit-network-support.com,True
+"Reminder: Guest lecture on AI and Cyber Security by Dr. Ramanathan on Friday, 3 PM at Anna Auditorium. All CSE students invited.",0,synthetic_vit_legit,en,events@vit.ac.in,True
+DocuSign: Urgent signature requested on settlement agreement. Review and sign: http://docusign-envelope-viewer.com/sign,1,general_phish_corpus,en,docusign@envelope-auth.net,False

@@ -1,0 +1,11 @@
+{
+  "model_type": "LogisticRegression",
+  "vectorizer": "FeatureUnion(word_ngram=(1,2), char_ngram=(3,5))",
+  "decision_threshold": 0.35,
+  "classes": [
+    0,
+    1
+  ],
+  "validation_accuracy": 1.0,
+  "validation_f1": 1.0
+}

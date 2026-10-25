@@ -87,8 +87,8 @@ def test_visibility_form_controls_and_labels():
     assert "btn-submit" in by_id
     assert by_id["btn-submit"]["tag"] == "button"
 
-def test_visibility_sample_scenario_pills():
-    """Verifies that scenario sample pills exist and are visible for quick testing."""
+def test_visibility_sample_scenarios():
+    """Verifies that the four scenario samples are available for quick testing."""
     content, _, _ = parse_html_elements()
     assert "loadSample('vit_phish')" in content
     assert "loadSample('vit_legit')" in content
@@ -110,15 +110,89 @@ def test_visibility_accessibility_aria_attributes():
     aria_hidden_elements = [el for el in elements if el["attrs"].get("aria-hidden") == "true"]
     assert len(aria_hidden_elements) >= 2, "Expected decorative icons to have aria-hidden='true'"
 
+def _luminance(hex_color: str) -> float:
+    channels = [int(hex_color[i : i + 2], 16) / 255 for i in (1, 3, 5)]
+
+    def linear(channel: float) -> float:
+        return channel / 12.92 if channel <= 0.03928 else ((channel + 0.055) / 1.055) ** 2.4
+
+    red, green, blue = (linear(channel) for channel in channels)
+    return 0.2126 * red + 0.7152 * green + 0.0722 * blue
+
+
+def _contrast_ratio(foreground: str, background: str) -> float:
+    high, low = sorted(
+        (_luminance(foreground), _luminance(background)), reverse=True
+    )
+    return (high + 0.05) / (low + 0.05)
+
+
 def test_visibility_color_contrast_tokens():
-    """Verifies that styles.css defines high-contrast accessible color tokens."""
+    """Verifies the light case-file palette meets WCAG AA text contrast."""
     with open(CSS_PATH, "r", encoding="utf-8") as f:
         css = f.read()
-    # High-contrast text colors on dark backgrounds
-    assert "--text-primary: #f0fdf4;" in css
-    assert "--color-safe: #10b981;" in css
-    assert "--color-warn: #f59e0b;" in css
-    assert "--color-danger: #ef4444;" in css
+
+    tokens = {
+        name: value.lower()
+        for name, value in re.findall(r"--([a-z-]+):\s*(#[0-9a-fA-F]{6})", css)
+    }
+    for token in ("paper", "paper-raised", "ink", "ink-soft", "accent", "safe", "warn", "mark"):
+        assert token in tokens, f"missing colour token --{token}"
+
+    assert _contrast_ratio(tokens["ink"], tokens["paper"]) >= 7.0
+    assert _contrast_ratio(tokens["ink-soft"], tokens["paper"]) >= 4.5
+    assert _contrast_ratio(tokens["accent"], tokens["paper"]) >= 4.5
+    assert _contrast_ratio(tokens["paper-raised"], tokens["accent"]) >= 4.5
+    assert _contrast_ratio(tokens["safe"], tokens["paper"]) >= 4.5
+    assert _contrast_ratio(tokens["warn"], tokens["paper"]) >= 4.5
+    assert _contrast_ratio(tokens["ink"], tokens["mark"]) >= 7.0
+
+
+def test_visibility_assets_are_versioned():
+    """Versioned CSS/JS URLs prevent stale styles leaking after a redesign."""
+    content, _, _ = parse_html_elements()
+    assert "styles.css?v=" in content
+    assert "app.js?v=" in content
+
+
+def test_visibility_fonts_are_self_hosted():
+    """The redesign must not call a font CDN; fonts ship with the app."""
+    content, _, _ = parse_html_elements()
+    with open(CSS_PATH, "r", encoding="utf-8") as f:
+        css = f.read()
+
+    assert "fonts.googleapis.com" not in content
+    assert "@font-face" in css
+    assert "ibm-plex-serif-400.woff2" in css
+    assert os.path.exists(
+        os.path.join(FRONTEND_DIR, "fonts", "ibm-plex-serif-400.woff2")
+    )
+
+
+def test_visibility_annotated_message_contract():
+    """The redesign shows the submitted message with evidence highlights."""
+    _, by_id, _ = parse_html_elements()
+    with open(CSS_PATH, "r", encoding="utf-8") as f:
+        css = f.read()
+    with open(JS_PATH, "r", encoding="utf-8") as f:
+        js = f.read()
+
+    assert "annotated-message" in by_id
+    assert "annotation-legend" in by_id
+    assert "mark.mark-link" in css
+    assert "annotateMessage" in js
+    assert "defangText" in js
+
+
+def test_visibility_errors_are_inline_not_alerts():
+    """Errors belong in the form status region, not a browser alert."""
+    content, by_id, _ = parse_html_elements()
+    with open(JS_PATH, "r", encoding="utf-8") as f:
+        js = f.read()
+
+    assert "form-status" in by_id
+    assert by_id["form-status"]["attrs"].get("role") == "status"
+    assert "alert(" not in js
 
 # =========================================================================
 # 4. Controller Dynamic Visibility Logic Tests

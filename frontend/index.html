@@ -4,153 +4,168 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>PhishGuard — Student Phishing Awareness & Analysis</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="styles.css?v=4">
 </head>
 <body>
-  <div class="container">
-    <!-- Header -->
-    <header>
-      <div class="brand-row">
-        <div class="logo-area">
-          <div class="shield-icon" aria-hidden="true">&#128737;</div>
-          <div>
-            <h1>PhishGuard</h1>
-            <p class="tagline">AI-driven phishing awareness and transparent signal analysis for students</p>
-          </div>
-        </div>
-        <div>
-          <span class="badge-core">STAGE 1 &bull; CORE</span>
-        </div>
-      </div>
+  <div class="shell">
+    <header class="site-header">
+      <a class="wordmark" href="/" aria-label="PhishGuard home">
+        <span class="wordmark-mark" aria-hidden="true">PG</span>
+        <span>PhishGuard</span>
+      </a>
+      <p class="header-line">A message checker for VIT students</p>
+      <span class="header-rule" aria-hidden="true"></span>
     </header>
 
-    <!-- Main Message Input Card -->
     <main>
-      <section class="card" aria-labelledby="input-heading">
-        <h2 id="input-heading" class="section-title">Message Inspector</h2>
-
-        <!-- Sample Selector Pills -->
-        <div class="sample-bar">
-          <span class="sample-label">Try a scenario sample:</span>
-          <div class="sample-pills">
-            <button type="button" class="pill-btn" onclick="loadSample('vit_phish')">🚨 VIT Account Suspension Scam</button>
-            <button type="button" class="pill-btn" onclick="loadSample('vit_legit')">🏛️ Official VIT Timetable Circular</button>
-            <button type="button" class="pill-btn" onclick="loadSample('gpay_phish')">💳 GPay Account Limited</button>
-            <button type="button" class="pill-btn" onclick="loadSample('peer_chat')">💬 Student Project Chat</button>
-          </div>
+      <section class="hero" aria-labelledby="page-title">
+        <div class="hero-copy">
+          <h1 id="page-title">Read the message before you trust it.</h1>
+          <p class="hero-lead">Paste an email, SMS, or chat message. PhishGuard points out the pressure tactics, credential requests, and link tricks — without opening anything.</p>
+          <p class="hero-note">Links are shown defanged. Nothing is visited, sent, or reported automatically.</p>
         </div>
-
-        <form id="analyse-form" onsubmit="handleAnalyse(event)">
-          <div class="form-group">
-            <label for="msg-text">Message Content (Email, SMS, or Chat text) *</label>
-            <textarea id="msg-text" required placeholder="Paste the suspicious message content here..."></textarea>
-          </div>
-
-          <div class="form-group">
-            <label for="msg-sender">Sender Address or Identifier (Optional)</label>
-            <input type="text" id="msg-sender" placeholder="e.g. admin@vit-support-desk.com or coe@vit.ac.in">
-          </div>
-
-          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 8px;">
-            <button type="submit" id="btn-submit" class="btn-primary">
-              <span>Analyse Message</span>
-              <span aria-hidden="true">&rarr;</span>
-            </button>
-            <span style="font-size: 0.8rem; color: var(--text-muted);">Safe Analysis: URLs are never resolved or visited.</span>
-          </div>
-        </form>
+        <aside class="hero-aside" aria-label="What you get">
+          <p class="aside-title">What you get</p>
+          <ul class="aside-list">
+            <li>A risk label you can act on.</li>
+            <li>The evidence behind it, in plain language.</li>
+            <li>What to do next, including where to report.</li>
+          </ul>
+        </aside>
       </section>
 
-      <!-- Analysis Results Card (Hidden until submitted) -->
-      <section id="results-card" class="card hidden" aria-live="polite">
-        <div class="verdict-header">
-          <div>
-            <span style="font-size: 0.82rem; color: var(--text-muted); text-transform: uppercase;">Assessment Verdict</span>
-            <div id="verdict-badge" class="verdict-badge badge-red">High Risk</div>
+      <div class="workspace">
+        <section class="sheet" aria-labelledby="input-heading">
+          <div class="sheet-head">
+            <h2 id="input-heading">Message under examination</h2>
+            <span class="sheet-meta">Plain text</span>
           </div>
-          <div class="score-box">
-            <div>
-              <div style="font-size: 0.75rem; color: var(--text-muted);">RISK INDEX</div>
-              <div id="score-num" class="score-num">0.95</div>
+
+          <form id="analyse-form" onsubmit="handleAnalyse(event)">
+            <div class="field">
+              <label for="msg-text">Message</label>
+              <textarea id="msg-text" required placeholder="Paste the suspicious message here..."></textarea>
             </div>
-            <div class="meter-track">
-              <div id="meter-fill" class="meter-fill"></div>
+
+            <div class="field">
+              <label for="msg-sender">Sender <span class="optional">(optional)</span></label>
+              <input type="text" id="msg-sender" placeholder="e.g. admin@vit-support-desk.com">
+            </div>
+
+            <div class="form-foot">
+              <button type="submit" id="btn-submit" class="btn-primary">Analyse message</button>
+              <p class="safety-note">No links are opened.</p>
+            </div>
+            <p id="form-status" class="form-status" role="status" aria-live="polite"></p>
+          </form>
+
+          <div class="samples">
+            <p class="samples-label">Try a sample</p>
+            <div class="sample-links">
+              <button type="button" class="sample-link" onclick="loadSample('vit_phish')">VIT suspension</button>
+              <button type="button" class="sample-link" onclick="loadSample('vit_legit')">Official VIT circular</button>
+              <button type="button" class="sample-link" onclick="loadSample('gpay_phish')">Payment alert</button>
+              <button type="button" class="sample-link" onclick="loadSample('peer_chat')">Student chat</button>
             </div>
           </div>
+        </section>
+
+        <div class="results-column">
+          <div id="results-empty" class="empty-state">
+            <p class="empty-title">Your assessment will appear here.</p>
+            <p class="empty-text">Paste a message and choose Analyse. You will get a risk label, the evidence behind it, and the next safe step.</p>
+          </div>
+
+          <section id="results-card" class="results hidden" aria-live="polite" aria-labelledby="results-heading">
+            <h2 id="results-heading" class="visually-hidden">Assessment</h2>
+
+            <div class="verdict-header">
+              <div>
+                <p class="verdict-kicker">Assessment</p>
+                <div id="verdict-badge" class="verdict-badge badge-red">High risk</div>
+              </div>
+              <div class="score-box">
+                <p class="score-label">Risk index</p>
+                <p id="score-num" class="score-num">0.00</p>
+                <div class="meter-track" role="img" aria-label="Risk index meter">
+                  <div id="meter-fill" class="meter-fill"></div>
+                </div>
+              </div>
+            </div>
+
+            <p id="verdict-recommendation" class="verdict-recommendation"></p>
+
+            <h3 class="section-title">Signals</h3>
+            <dl class="signal-list">
+              <div id="sig-urgency" class="signal-row">
+                <dt>Urgency</dt>
+                <dd id="sig-urgency-status">Not detected</dd>
+              </div>
+              <div id="sig-cred" class="signal-row">
+                <dt>Credential request</dt>
+                <dd id="sig-cred-status">Not detected</dd>
+              </div>
+              <div id="sig-url" class="signal-row">
+                <dt>Link structure</dt>
+                <dd id="sig-url-status">No links</dd>
+              </div>
+              <div id="sig-sender" class="signal-row">
+                <dt>Sender</dt>
+                <dd id="sig-sender-status">Not provided</dd>
+              </div>
+            </dl>
+
+            <div id="defanged-container" class="defanged-box hidden">
+              <p class="defanged-title">Links found (defanged)</p>
+              <div id="defanged-list"></div>
+            </div>
+
+            <h3 class="section-title">Why this was flagged</h3>
+            <ol id="explanation-list" class="explanation-list"></ol>
+
+            <details class="specimen" open>
+              <summary>Annotated message</summary>
+              <div id="annotated-message" class="annotated-message"></div>
+              <p id="annotation-legend" class="annotation-legend">Highlighted: pressure language, credential request, or link.</p>
+            </details>
+
+            <div class="guidance-grid">
+              <div class="advice-card">
+                <h4>What to do now</h4>
+                <ul id="action-list">
+                  <li>Do not click any links or download attachments.</li>
+                  <li>Do not reply or share student credentials.</li>
+                  <li>If you entered your password, change it on the official VTOP portal.</li>
+                </ul>
+              </div>
+
+              <div class="advice-card">
+                <h4>Report it</h4>
+                <div class="contact-item">
+                  <strong>VIT IT Helpdesk</strong>
+                  <span id="contact-helpdesk">helpdesk@vit.ac.in / Student Welfare</span>
+                </div>
+                <div class="contact-item">
+                  <strong>National Cyber Crime Portal</strong>
+                  <span id="contact-portal">cybercrime.gov.in</span>
+                </div>
+                <div class="contact-item">
+                  <strong>National Cyber Helpline</strong>
+                  <span>Dial 1930 for financial fraud</span>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
-
-        <!-- Verdict Recommendation Banner -->
-        <div id="verdict-recommendation" class="verdict-recommendation"></div>
-
-        <!-- Corroborated Signal Badges -->
-        <h3 class="section-title" style="font-size: 1rem;">Signal Breakdown</h3>
-        <div class="signals-grid">
-          <div id="sig-urgency" class="signal-card">
-            <div class="signal-header">URGENCY PRESSURE</div>
-            <div id="sig-urgency-status" class="signal-status">None</div>
-          </div>
-          <div id="sig-cred" class="signal-card">
-            <div class="signal-header">CREDENTIAL SOLICITATION</div>
-            <div id="sig-cred-status" class="signal-status">None</div>
-          </div>
-          <div id="sig-url" class="signal-card">
-            <div class="signal-header">URL STRUCTURE</div>
-            <div id="sig-url-status" class="signal-status">No Links</div>
-          </div>
-          <div id="sig-sender" class="signal-card">
-            <div class="signal-header">SENDER VERIFICATION</div>
-            <div id="sig-sender-status" class="signal-status">Not Provided</div>
-          </div>
-        </div>
-
-        <!-- Defanged Link Architecture -->
-        <div id="defanged-container" class="defanged-box hidden">
-          <div class="defanged-title">Defanged Extracted Links (Safe View &bull; Non-clickable)</div>
-          <div id="defanged-list"></div>
-        </div>
-
-        <!-- Ranked Explanations -->
-        <h3 class="section-title" style="font-size: 1rem;">Evidence & Explanation Panel</h3>
-        <div id="explanation-list" class="explanation-list"></div>
-
-        <!-- What to do now & Reporting Guidance -->
-        <div class="guidance-grid">
-          <div class="advice-card">
-            <h4>⚠️ Recommended Student Actions</h4>
-            <ul id="action-list">
-              <li>Do NOT click any links or download attachments.</li>
-              <li>Do NOT reply or provide student credentials.</li>
-              <li>If you entered your password, change it on official VTOP immediately.</li>
-            </ul>
-          </div>
-
-          <div class="advice-card">
-            <h4>🛡️ Reporting & Official Help</h4>
-            <div class="contact-item">
-              <strong>VIT IT Helpdesk:</strong>
-              <span id="contact-helpdesk">helpdesk@vit.ac.in / Student Welfare</span>
-            </div>
-            <div class="contact-item">
-              <strong>National Cyber Crime Portal:</strong>
-              <span id="contact-portal">cybercrime.gov.in</span>
-            </div>
-            <div class="contact-item">
-              <strong>National Cyber Helpline:</strong>
-              <span>Dial 1930 (Immediate assistance in India)</span>
-            </div>
-          </div>
-        </div>
-      </section>
+      </div>
     </main>
 
-    <footer>
-      PhishGuard v1.0 (Stage 1 Core) &bull; Safe static analysis compliant with Q5 project brief &bull; Zero external link requests
+    <footer class="site-footer">
+      <p>PhishGuard is an awareness tool. It can be wrong; always verify through the official portal.</p>
+      <p>No link is fetched. No message is reported automatically.</p>
     </footer>
   </div>
 
-  <script src="app.js"></script>
+  <script src="app.js?v=2"></script>
 </body>
 </html>

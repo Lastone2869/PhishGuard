@@ -7,11 +7,17 @@ Provides:
   - Static file hosting for frontend UI
 """
 
+import mimetypes
 import os
 import sys
 
 # Ensure project root is in sys.path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+# Windows' mimetypes registry does not know woff2; make the self-hosted fonts
+# load reliably instead of being served as text/plain.
+mimetypes.add_type("font/woff2", ".woff2")
+mimetypes.add_type("font/woff", ".woff")
 
 from typing import Optional
 from fastapi import FastAPI, HTTPException
@@ -126,6 +132,15 @@ def analyse_message(request: AnalyseRequest):
         reporting_guidance=REPORTING_GUIDANCE,
         what_to_do_now=WHAT_TO_DO_STEPS
     )
+
+@app.middleware("http")
+async def disable_html_cache(request, call_next):
+    """Keep the shell HTML fresh; versioned CSS/JS handles the rest."""
+    response = await call_next(request)
+    if request.url.path in ("/", "/index.html"):
+        response.headers["Cache-Control"] = "no-store, max-age=0"
+    return response
+
 
 # Mount frontend directory for static assets and HTML UI
 frontend_dir = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "frontend"))

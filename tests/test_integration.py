@@ -42,6 +42,19 @@ def test_integration_health_and_static_assets():
     assert js_resp.status_code == 200
     assert "handleAnalyse" in js_resp.text
 
+def test_integration_html_shell_is_not_cached():
+    """The HTML shell must revalidate so a code change is picked up on reload."""
+    resp = client.get("/")
+    assert "no-store" in resp.headers.get("cache-control", "")
+
+
+def test_integration_self_hosted_font_mime_type():
+    """The local IBM Plex files must be served as fonts, not text/plain."""
+    resp = client.get("/fonts/ibm-plex-serif-400.woff2")
+    assert resp.status_code == 200
+    assert "font/woff2" in resp.headers["content-type"]
+
+
 # =========================================================================
 # 2. Response Contract & Schema Validation
 # =========================================================================
